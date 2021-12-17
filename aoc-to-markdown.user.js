@@ -1,14 +1,14 @@
 // ==UserScript==
 // @name         AoC to Markdown
 // @updateURL    https://raw.githubusercontent.com/bernikr/aoc-to-markdown/main/aoc-to-markdown.user.js
-// @version      1.0.0
+// @version      1.0.1
 // @description  Convert AoC page to Markdown and copy to the clipboard
 // @author       bernikr
 // @homepageURL  https://github.com/bernikr/aoc-to-markdown
 // @include      /^https?:\/\/adventofcode.com\/\d+\/day\/\d+$/
 // @grant        none
-// @require      https://unpkg.com/turndown@7.1.1/dist/turndown.js
-// @require      https://unpkg.com/turndown-plugin-gfm@1.0.2/dist/turndown-plugin-gfm.js
+// @require      https://unpkg.com/turndown@7.1.1/dist/turndown.js#sha256=b7e8f59e7c80aa531f6feaea211e70594ba5dac88696161b4f907a00b5d58fa0
+// @require      https://unpkg.com/turndown-plugin-gfm@1.0.2/dist/turndown-plugin-gfm.js#sha256=cf744cc1b7580f06d64ce236a4ff2630a53d389eccf2133a09d71ca443511912
 // ==/UserScript==
 
 const descriptionTitle = "Description";
