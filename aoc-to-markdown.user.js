@@ -1,6 +1,15 @@
-import { runtime } from "webextension-polyfill";
-import { gfm } from "turndown-plugin-gfm";
-import TurndownService from "turndown";
+// ==UserScript==
+// @name         AoC to Markdown
+// @updateURL    https://raw.githubusercontent.com/bernikr/aoc-to-markdown/main/aoc-to-markdown.user.js
+// @version      1.0.0
+// @description  Convert AoC page to Markdown and copy to the clipboard
+// @author       bernikr
+// @homepageURL  https://github.com/bernikr/aoc-to-markdown
+// @include      /^https?:\/\/adventofcode.com\/\d+\/day\/\d+$/
+// @grant        none
+// @require      https://unpkg.com/turndown@7.1.1/dist/turndown.js
+// @require      https://unpkg.com/turndown-plugin-gfm@1.0.2/dist/turndown-plugin-gfm.js
+// ==/UserScript==
 
 const descriptionTitle = "Description";
 const partOneHeadingTitle = "Part One";
@@ -19,7 +28,7 @@ function generateMarkdown(doc) {
 
   // Use GitHub-flavored Markdown since that seems to be pretty feature-filled
   // and generates files that render well on GitHub.
-  turndownService.use(gfm);
+  turndownService.use(turndownPluginGfm.gfm);
 
   // Special handling for emphasized code blocks.
   //
@@ -47,7 +56,7 @@ function generateMarkdown(doc) {
   // ```html
   // <code>1 + 1 = <em>2</em></code>
   // ```
-  // 
+  //
   // The default rendering results in the underscores being rendered, as there
   // isn't a proper way to render emphasis within code blocks without resorting
   // to HTML again. In this case the best solution is to drop the emphasis
@@ -119,14 +128,17 @@ function capturePage() {
   return generateMarkdown(newDoc);
 }
 
-runtime.onMessage.addListener((data) => {
-  if (data.action === "capturePage") {
-    const markdown = capturePage();
-    return runtime
-      .sendMessage({
-        action: "saveAs",
-        text: markdown,
-      })
-      .catch((err) => console.error("Failed to send 'saveAs' message", err));
-  }
-});
+(function() {
+    let button = document.createElement("input");
+    button.type = "submit";
+    button.value = "[copy markdown]";
+    button.addEventListener("click", (e)=>{
+        navigator.clipboard.writeText(capturePage());
+        button.value = "[copied...]";
+        setTimeout(()=>{
+            button.value = "[copy markdown]";
+        }, 1000);
+    });
+    let main = document.querySelector('main');
+    main.insertBefore(button, main.firstChild);
+})();
