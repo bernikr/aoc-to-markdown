@@ -1,22 +1,12 @@
-# Advent of Code to Markdown
+# Advent of Code to Markdown Userscript
 
-Converts a given [Advent of Code](https://adventofcode.com) page to a
-GitHub-compatible Markdown file.
+Converts a given [Advent of Code](https://adventofcode.com) page to GitHub-compatible Markdown and copies it to the clipborad.
+This userscript is adapted from the [this browser addon](https://github.com/kfarnung/aoc-to-markdown).
+
+## Why
+
+I dont like having to install addons for small functionality. Also I need to paste the markdown into a chat, so having to save it first is annoying.
 
 ## Install
 
-### Edge
-
-Install from [Microsoft Edge Addons](https://microsoftedge.microsoft.com/addons/detail/advent-of-code-to-markdow/deadbipfmnjnhepbnpdkmkhakgfejpol).
-
-### Chrome
-
-Install from the [Chrome Web Store](https://chrome.google.com/webstore/detail/advent-of-code-to-markdow/bhhioamnpnhgcakbdnkgmnjjbjolfjmj).
-
-### Firefox
-
-Install from [Add-ons for Firefox](https://addons.mozilla.org/en-US/firefox/addon/aoc-to-markdown/).
-
-## Build
-
-See [BUILDING.md](BUILDING.md) for detailed instructions.
+Install a User Script Manager of your choice and [click this link to install](https://github.com/bernikr/aoc-to-markdown/raw/main/aoc-to-markdown.user.js).
